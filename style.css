@@ -149,7 +149,7 @@ body {
 
 /* Feetview with clickable note */
 .scene-bg {
-  width: 100%;
+  width: 50%;
   height: auto;
   display: block;
 }
@@ -159,8 +159,8 @@ body {
   top: 24%;
   left: 49.7%;
   transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
+  width: 140px;
+  height: 140px;
   cursor: pointer;
   background: rgba(255,255,255,0.2);
   border: 2px dashed rgba(0,0,0,0.3);
