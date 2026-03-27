@@ -15,7 +15,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Cinzel", serif;
   font-size: 2rem;
   z-index: 9999;
 }
