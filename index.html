@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quest Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <!-- Scene container -->
+  <div id="intro">
+
+    <!-- Scene 1: boy & girl meet -->
+    <div id="scene1" class="walk-scene">
+      <div class="scene-text">Введение текст...</div>
+      <button class="next-btn" onclick="nextScene('scene1','scene5')">Next</button>
+    </div>
+
+    <!-- Scene 5: note in feetview -->
+    <div id="scene5" class="walk-scene" style="display:none;">
+      <div class="scene-text">Оксана уронила записку...</div>
+      <img src="feetview.png" alt="Feet view" class="scene-bg">
+      <div class="note-drawing" onclick="pickNote()"></div>
+      <div class="bottom-hint">Нажми на записку чтобы поднять ее</div>
+    </div>
+  </div>
+
+  <!-- Note (shown after clicking) -->
+  <div id="note1" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        Fontana del Babuino
+      </div>
+    </div>
+    <button onclick="nextSlide('note1','quest1')">Далее</button>
+  </div>
+
+  <!-- Notes and Questions -->
+  <!-- Note 1 -->
+  <!-- <div id="note1" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        I can see “36 Rue de Vaugirard” on his old crumpled Google map printout
+      </div>
+    </div>
+    <button onclick="nextSlide('note1','quest1')">Далее</button>
+  </div> -->
+
+  <!-- Question 1 -->
+  <div id="quest1" class="quest" style="display:none;">
+    <h2> Иль Бубуино-один из членов «Сообщества мудрейших». Сколько всего членов в этом сообществе? </h2>
+
+    <form id="quest1-form">
+      <label><input type="radio" name="answer1" value="1"> 2</label><br>
+      <label><input type="radio" name="answer1" value="2"> 4</label><br>
+      <label><input type="radio" name="answer1" value="3"> 6</label><br>
+    </form>
+
+    <button onclick="checkAnswer(1)">Готово</button>
+    <p id="feedback1"></p>
+  </div>
+
+
+  <!-- Info 1 -->
+  <div id="note1b" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="scroll.png" alt="Note" class="note-bg">
+      <div class="note-text" style="font-size:13px;">
+        Говорящие статуи Рима — это шесть древних скульптур (Пасквино, Иль Баббуино, Аббат Луиджи, Марфорио и др.), ставшие с XVI века уникальным символом свободы слова. На их подножия анонимно приклеивали сатирические стихи и пасквили («пасквинады»), критикующие Папу и власть, что превратило их в «сообщество мудрейших», выражавшее мнение народа. Иль Баббуино - фонтан с изображением отдыхающего Силена, названный жителями «бабуином» за уродство. Иль Баббуино настоятельно рекомендует познакомиться еще с двумя его коллегами - Пасквино и Аббатом Луиджи. Но сначала отправляет нас в Пантеон совершить тайное действие...
+      </div>
+    </div>
+    <button onclick="nextSlide('note1b','note2')">Поднять следующую записку</button>
+  </div>
+
+  <!-- Note 2 -->
+  <div id="note2" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        Pantheon
+      </div>
+    </div>
+    <button onclick="nextSlide('note2','quest2')">Далее</button>
+  </div>
+
+  <!-- Question 2 -->
+  <div id="quest2" class="quest" style="display:none;">
+    <h2>Загадаем желание! для этого необходимо совершить некий обряд и это не просто. нужно войти внутрь, мысленно обратиться к свету, падающему из «Окулюса» — центрального окна в куполе, закрыть глаза, сформулировать мечту и мысленно произнести ее. Для усиления эффекта необходимо обойти храм три раза по часовой стрелке, не отвлекаясь. Если всё сделать правильно - сбудется через месяц!
+      Ключевые нюансы ритуала:
+      Место: Главная точка силы — точно под круговым отверстием в центре купола, откуда падает солнечный свет.
+      Формулировка: Сформулируйте желание четко, в настоящем времени («я получаю», «я еду»), без частицы «не» и вреда для других.
+      Действие: Закройте глаза, визуализируйте желание и, по преданию, оно исполнится в течение месяца. 
+      Примечание: Поскольку Пантеон — действующий храм (церковь Святой Марии и Мучеников), ведите себя уважительно, соблюдайте тишину и дресс-код (закрытые плечи и колени).
+    </h2>
+
+    <form id="quest2-form">
+      <label><input type="radio" name="answer2" value="1"> Загадано </label><br>
+    </form>
+
+    <button onclick="checkAnswer(2)">Готово</button>
+    <p id="feedback2"></p>
+  </div>
+
+  <!-- Info 2 -->
+  <div id="note2b" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="scroll.png" alt="Note" class="note-bg">
+      <div class="note-text" style="font-size:14px;">
+        Пантеон — это группа богов, принадлежащих той или иной религии или мифологии (от греческого πάντες — все и θεός — бог). По одной из версий, в языческие времена в храме Пантеон были представлены все главные божества древних римлян. В нем по кругу располагались алтари Марса, Венеры, Сатурна, Юпитера и Юноны. Римляне подносили богам дары и совершали ритуальные жертвоприношения, чтобы заручиться их поддержкой и добиться благоволения.
+      </div>
+    </div>
+    <button onclick="nextSlide('note2b','note3')">Далее</button>
+  </div>
+
+  <!-- Note 3 -->
+  <div id="note3" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        Monumento a Giordano Bruno
+      </div>
+    </div>
+    <button onclick="nextSlide('note3','quest3')">Далее</button>
+  </div>
+
+  <!-- Question 3 -->
+  <div id="quest3" class="quest" style="display:none;">
+    
+    <h2>Что общего у Джордано Бруно с цветочным рынком?</h2>
+    <form id="quest3-form">
+      <label><input type="radio" name="answer3" value="1"> Он родился на цветочном рынке </label><br>
+      <label><input type="radio" name="answer3" value="2"> Он женился на цветочном рынке </label><br>
+      <label><input type="radio" name="answer3" value="3"> Он умер на цветочном рынке </label><br>
+    </form>
+    <button onclick="checkAnswer(3)">Готово</button>
+    <p id="feedback3"></p>
+  </div>
+
+
+  <!-- Info 3 -->
+  <div id="note3b" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="scroll.png" alt="Note" class="note-bg">
+      <div class="note-text" style="font-size:14px;">
+        Прямо на этой площади, где цветочный рынок, был сожжён Джордано Бруно. За ересь и непокорность, а по сути за слишком прогрессивные научные взгляды. Он, к примеру, отстаивал множественность миров, ибо Господь слишком велик, чтобы создать всего один.
+Да ещё заносчив был, не мог ужиться ни в одной стране, ни при одном правителе.
+И вот справедливые римляне поставили в этом месте памятник Джордано (установлен в 1889 году). Философ изображен в капюшоне, смотрящим в сторону Ватикана. Однако, Ватикан так и не реабилитировал Бруно до сих пор!
+      </div>
+    </div>
+    <button onclick="nextSlide('note3b','note4')">Далее</button>
+  </div>
+
+  <!-- Note 4 -->
+  <div id="note4" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        Кошачий форум (пл. Торре Арджентина)
+      </div>
+    </div>
+    <button onclick="nextSlide('note4','quest4')">Далее</button>
+  </div>
+
+  <!-- Question 4 -->
+  <div id="quest4" class="quest" style="display:none;">
+    <h2>Kакую тайну скрывает: мистическую или историческую?</h2>
+    <form id="quest4-form">
+      <label><input type="radio" name="answer4" value="1"> мистическую </label><br>
+      <label><input type="radio" name="answer4" value="2"> историческую </label><br>
+    </form>
+    <button onclick="checkAnswer(4)">Готово</button>
+    <p id="feedback4"></p>
+  </div>
+
+  <!-- Info 4 -->
+  <div id="note4b" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="scroll.png" alt="Note" class="note-bg">
+      <div class="note-text" style="font-size:12px;">
+        Площадь Торре-Арджентина — это место, где Рим одновременно величественный, загадочный и… кошачий. Сделаем шаг назад более чем на 2000 лет. Именно здесь 15 марта 44 года до н. э. был убит Гай Юлий Цезарь — в здании Курии Помпея, руины которой до сих пор можно увидеть на раскопках.
+
+Но площадь знаменита не только этим. Она — настоящий «слоёный пирог» истории. Здесь находятся руины четырёх древнеримских храмов III–II веков до н. э., скрытые под уровнем современной улицы. В Средние века рядом возвели башню (отсюда «Торре» в названии), а в XX веке руины случайно обнаружили во время строительных работ.
+
+А ещё Торре-Арджентина — это официальный кошачий заповедник Рима. Среди колонн и древних камней мирно дремлют или прогуливаются десятки пушистых обитателей, которых опекают волонтёры.
+      </div>
+    </div>
+    <button onclick="nextSlide('note4b','note5')">Далее</button>
+  </div>
+
+  <!-- Note 5 -->
+  <div id="note5" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        Фонтан Черепах
+      </div>
+    </div>
+    <button onclick="nextSlide('note5','quest5')">Далее</button>
+  </div>
+
+  <!-- Question 5 -->
+  <div id="quest5" class="quest" style="display:none;">
+    <h2>Чьё место заняли черепашки во время реконструкции фонтана?</h2>
+    <form id="quest4-form">
+      <label><input type="radio" name="answer5" value="1"> Рыб </label><br>
+      <label><input type="radio" name="answer5" value="2"> Дельфинов </label><br>
+      <label><input type="radio" name="answer5" value="3"> Гусей </label><br>
+    </form>
+    <button onclick="checkAnswer(5)">Готово</button>
+
+    <p id="feedback5"></p>
+  </div>
+
+
+
+  <!-- Info 5 -->
+  <div id="note5b" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="scroll.png" alt="Note" class="note-bg">
+      <div class="note-text" style="font-size:10px;">
+        Фонта́н черепа́х — фонтан эпохи Возрождения,  расположенный в Риме на площади Маттеи. Создан между 1580 и 1588 годами. Бронзовые черепашки, карабкающиеся на верхнюю чашу фонтана, добавлены значительно позже постройки фонтана — в 1658—1659 годах, при реконструкции фонтана, которая проводилась Бернини или Сакки.
+Считается, что дельфины и черепахи символизируют античный девиз «Festina lente» — «Поспешай медленно», любимое выражение императора Октавиана Августа.
+Фонтан черепах был создан с целью обеспечения населения города питьевой водой. Он вошёл в группу из восемнадцати фонтанов, сооружённых в Риме в XVI веке по указанию папы Григория XIIIпри реконструкции древнеримских акведуков. Вода в фонтан подавалась из акведука самотёком, но из-за небольшого перепада высот в этом месте её оказалось недостаточно. В связи с этим четыре из восьми фигур дельфинов были перенесены из этого фонтана. 
+С удалением четырёх дельфинов стало казаться, что поднятие рук бронзовых юношей неоправданно. Возможно, чтобы решить эту проблему и улучшить композицию, и были добавлены четыре бронзовые черепахи при реконструкции фонтана по указанию папы Александра VII. После того, как в 1979 году одна из черепах была украдена, все фигурки черепах были заменены копиями.
+      </div>
+    </div>
+    <button onclick="nextSlide('note5b','note6')">Далее</button>
+  </div>
+
+  <!-- Note 6 -->
+  <div id="note6" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        Театр Марцелла
+      </div>
+    </div>
+    <button onclick="nextSlide('note6','quest6')">Далее</button>
+  </div>
+
+  <!-- Question 6 -->
+  <div id="quest6" class="quest" style="display:none;">
+    <h2>Когда был построен театр Марцелла?</h2>
+
+    <form id="quest6-form">
+      <label><input type="radio" name="answer6" value="1"> I в. до н.э. </label><br>
+      <label><input type="radio" name="answer6" value="2"> II в. до н.э. </label><br>
+      <label><input type="radio" name="answer6" value="3"> I в. н.э. </label><br>
+    </form>
+
+    <button onclick="checkAnswer(6)">Готово</button>
+    <p id="feedback6"></p>
+  </div>
+
+  <!-- Info 6 -->
+  <div id="note6b" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="scroll.png" alt="Note" class="note-bg">
+      <div class="note-text" style="font-size:12px;">
+      Театр Марцелла в Риме (I в. до н.э.) — старейший сохранившийся каменный театр города, послуживший образцом для Колизея. 
+Интересные факты о Театре Марцелла:
+«Отец» Колизея: Архитектурные решения театра (использование арок и бетонных сводов) стали прообразом для строительства знаменитого амфитеатра Флавиев.
+Гигантская вместимость: В древности театр вмещал от 15 до 20 тысяч зрителей, уступая по размерам лишь театру Помпея.
+Уникальная акустика: В древности по периметру театра были расставлены 36 бронзовых ваз для усиления звука во время представлений.
+Смена ролей: За свою историю здание было театром, жилым домом, крепостью семьи Орсини, а сейчас это элитный жилой комплекс.
+Три архитектурных стиля: Театр состоял из трех ярусов, украшенных разными ордерами: нижний — дорическим, средний — ионическим, а верхний (не сохранился) — коринфским.
+      </div>
+    </div>
+    <button onclick="nextSlide('note6b','note7')">Далее</button>
+  </div>
+
+  <!-- Note 7 -->
+  <div id="note7" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        Башня Девы (Torre della Pulzella) V. di Ponte Quattro Capi
+      </div>
+    </div>
+    <button onclick="nextSlide('note7','quest7')">Далее</button>
+  </div>
+
+  <!-- Question 7 -->
+  <div id="quest7" class="quest" style="display:none;">
+    <h2>Найти прекрасную римскую женщину 1 века н.э., заточённую в высокой башне</h2>
+
+    <form id="quest7-form">
+      <label><input type="radio" name="answer7" value="1"> Нашел </label><br>
+    </form>
+    <button onclick="checkAnswer(7)">Готово</button>
+    <p id="feedback7"></p>
+  </div>
+
+  <!-- Info 7 -->
+  <div id="note7b" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="scroll.png" alt="Note" class="note-bg">
+      <div class="note-text" style="font-size:10px;">
+        
+      Башня Пульцелла (также известная как замок Каэтани) расположена в историческом центре Рима, в районе XII (Рипа).
+Она стоит в конце моста Фабрицио, старейшего действующего римского моста (62 г. до н.э.), прямо на стороне, ведущей к острову Тибр. (также называется Понте деи Куаттро Капи, по названию двух двуликих герм в его центре-найти их)
+
+Башня была построена в X веке могущественной семьей Пьерлеони, которая превратила остров Тибр в настоящее средневековое укрепление.
+Это единственное сохранившееся здание этого оборонительного комплекса.
+
+Замок несколько раз переходил из рук в руки, один из которых был приобретен знатной семьей Каэтани, которая добавила небольшие постройки и пристройки, даже включив в них части расположенной неподалеку базилики Сан-Бартоломео. Большая часть существовавшего поместья была разрушена в результате разрушительного наводнения Тибра в 1557 году, которое смыло значительную часть острова.
+На протяжении веков здесь жили различные важные фигуры, в том числе два папы (в критические моменты из-за беспорядков, вспыхнувших в Риме) и Матильда Каносса (начало XI века).
+В XVII веке поместье было приобретено кардиналом Барберини, который передал его францисканским монахам.
+Затем оно использовалось как место для ухода за больными. С XVIII века оно также являлось штаб-квартирой так называемых «Саккони Росси», которые обеспечивали христианское захоронение тел, найденных в Тибре.
+      </div>
+    </div>
+    <button onclick="nextSlide('note7b','note8')">Далее</button>
+  </div>
+
+  <!-- Note 8 -->
+  <div id="note8" class="note" style="display:none;">
+    <div class="note-container">
+      <img src="note_canvas.png" alt="Note" class="note-bg">
+      <div class="note-text">
+        Ты справился с задачей. Следуй за мной 
+      </div>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

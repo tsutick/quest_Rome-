@@ -1,0 +1,445 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 30px;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+#countdown-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cinzel", serif;
+  font-size: 2rem;
+  z-index: 9999;
+}
+
+#countdown-timer {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+
+/* Scene styling */
+
+.character {
+  position: absolute;
+  bottom: 0;
+  width: 400px;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards; /* stay at last frame */
+}
+
+/* Girl enters from right */
+.girl {
+  right: -150px;
+  width: 345px;
+  bottom: 68px;
+  animation-name: girl-walk;
+  animation-duration: 2.5s;
+}
+
+/* Boy enters from left */
+.boy {
+  left: -150px;
+  width: 400px;
+  bottom: 40px;
+  animation-name: boy-walk;
+  animation-duration: 2.5s;
+}
+
+@keyframes girl-walk {
+  0%   { right: -150px; }
+  100% { right: 11%; } /* stop at meeting point */
+}
+
+@keyframes boy-walk {
+  0%   { left: -150px; }
+  100% { left: 11%; } /* stop at meeting point */
+}
+
+
+.walk-scene {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 80vh;
+  overflow: hidden;
+  margin: 0 auto;
+
+  background-size: cover;          /* makes the image fill the area */
+  background-position: center;     /* centers the image */
+  background-repeat: no-repeat;    /* prevents tiling */
+  background-attachment: fixed;    /* keeps it fixed while content moves */
+}
+
+#scene5 {
+  background: none; /* or a different color/image if you prefer */
+}
+
+#scene5 .scene-bg {
+  position: absolute;
+  bottom: 50px;
+  left: 52.5%;
+  transform: translateX(-50%);
+  width: 115%;
+  height: auto;
+  object-fit: cover;
+}
+
+
+.scene-text {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-family: 'Kalam', cursive;
+}
+
+.next-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 18px;
+  cursor: pointer;
+}
+
+/* Character positions for static scenes */
+.still-boy { left: 11%; width: 400px; bottom: 40px; position: absolute; }
+.still-girl { right: 11%; width: 345px; bottom: 68px; position: absolute; }
+
+/* Villain initial position and movement */
+.villain { right: -150px; bottom: 50px; width: 360px; animation: villain-enter 2s forwards; }
+@keyframes villain-enter {
+  from { right: -150px; }
+  to { right: -14%; }
+}
+
+/* When villain takes the girl */
+.moving-villain { right: -14%; bottom: 50px; width: 360px; animation: villain-leave 3s forwards; }
+.moving-girl { right: 11%; bottom: 68px; width: 345px; animation: girl-leave 3s forwards; }
+
+@keyframes villain-leave {
+  from { right: -14%; opacity: 1; }
+  to { right: 110%; opacity: 0; }
+}
+@keyframes girl-leave {
+  from { right: 11%; opacity: 1; }
+  to { right: 110%; opacity: 0; }
+}
+
+/* Sadboy zoom */
+.sadboy {
+  left: 11%;
+  bottom: 40px;
+  width: 400px;
+  position: absolute;
+  animation: sadboy-zoom 3s forwards;
+}
+@keyframes sadboy-zoom {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(2); opacity: 1; bottom: -30px;}
+}
+
+/* Feetview with clickable note */
+.scene-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.note-drawing {
+  position: absolute;
+  top: 24%;
+  left: 49.7%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.2);
+  border: 2px dashed rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+
+.note-drawing:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.bottom-hint {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-style: italic;
+  color: #333;
+}
+
+
+/* Notes */
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px auto;
+  width: 100%;
+}
+
+.note-container {
+  position: relative;
+  width: 60%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.note-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.note-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+  max-height: 60%;
+  font-size: 20px;
+  font-family: 'Kalam', cursive;
+  color: #333;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.note button {
+  margin-top: 15px;
+  padding: 10px 22px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Questions */
+.quest {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.quest-img-small {
+  width: 300px;   /* set desired width */
+  height: auto;   /* keeps proportions */
+  display: block;
+  margin: 0 auto 20px; /* center + spacing */
+}
+
+#final-message {
+  margin-top: 50px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+/* --- Question 1 layout tweaks --- */
+#quest1 form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* left-align radio buttons */
+  gap: 6px;                 /* spacing between answers */
+  margin-left: 10px;        /* small indent for a clean look */
+}
+
+#quest1 button {
+  margin-top: 15px;         /* space above Submit */
+}
+
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  background-color: rgba(255,255,255,0.5); /* semi-transparent overlay */
+  backdrop-filter: blur(4px); /* blur the area */
+  border: 2px solid rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.hotspot:hover {
+  transform: scale(1.05); /* slight zoom on hover */
+  border-color: rgba(0,0,0,0.5);
+}
+
+
+/* --- Question 6 layout tweaks --- */
+#quest6 form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  /* left-align radio buttons */
+  gap: 6px;                 /* spacing between answers */
+  margin-left: 10px;        /* small indent for a clean look */
+}
+
+#quest6 button {
+  margin-top: 15px;         /* space above Submit */
+}
+
+/* Make point.jpg and blur.jpg smaller and responsive */
+.quest-img, .blur-img {
+  max-width: 400px;  /* not too big */
+  width: 80%;        /* scale down for smaller screens */
+  height: auto;
+  margin: 20px auto;
+  display: block;
+}
+
+/* --- FIX: Reserve space for feedback to prevent hotspots jumping --- */
+.quest p {
+  min-height: 1.5em;  /* reserve vertical space for "Try again!" text */
+  margin-top: 10px;
+  font-weight: bold;
+  color: red;
+}
+
+
+
+/* === Responsive adjustments for phones and small tablets === */
+@media (max-width: 768px) {
+
+  body {
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .walk-scene {
+    height: 80vh;
+    max-width: 100%;
+    background-attachment: scroll; /* prevents jank on mobile */
+  }
+
+  .scene-text {
+    font-size: 16px;
+    top: 5px;
+    width: 90%;
+    text-align: center;
+  }
+
+  .character,
+  .still-boy,
+  .still-girl,
+  .villain,
+  .moving-villain,
+  .moving-girl,
+  .sadboy {
+    width: 45vw; /* scale down characters proportionally */
+  }
+
+  /* Adjust positions for mobile view */
+  .boy, .still-boy {
+    left: 5%;
+    bottom: 20px;
+  }
+
+  .girl, .still-girl {
+    right: 5%;
+    bottom: 30px;
+  }
+
+  /* Villain and animations */
+  .villain,
+  .moving-villain {
+    bottom: 20px;
+  }
+
+  /* Scale backgrounds & notes */
+  .scene-bg {
+    width: 100%;
+  }
+
+  .note-drawing {
+    width: 50px;
+    height: 50px;
+  }
+
+  .bottom-hint {
+    bottom: 50px;
+    font-size: 12px;
+  }
+
+  /* Notes */
+  .note-container {
+    width: 85%;
+    max-width: none;
+  }
+
+  .note-text {
+    font-size: 16px;
+    width: 80%;
+  }
+
+  .note button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  /* Questions layout */
+  .quest-img,
+  .blur-img,
+  .quest-img-small {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  #quest1 form,
+  #quest6 form {
+    margin-left: 0;
+    align-items: center;
+  }
+
+  .quest p {
+    font-size: 14px;
+  }
+
+  #final-message {
+    font-size: 18px;
+  }
+
+  .next-btn {
+    font-size: 14px;
+    padding: 6px 14px;
+    bottom: 10px;
+  }
+
+  /* Smaller hotspots for touch */
+  .hotspot {
+    border-width: 1px;
+    backdrop-filter: none; /* smoother on phones */
+  }
+
+  .hotspot:hover {
+    transform: none; /* disable hover scaling on mobile */
+  }
+}
+
+/* Optional: very small screens (≤480px) */
+@media (max-width: 480px) {
+  .scene-text {
+    font-size: 14px;
+  }
+
+  .note-text {
+    font-size: 14px;
+  }
+
+  .next-btn {
+    font-size: 12px;
+  }
+}
