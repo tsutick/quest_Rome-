@@ -101,7 +101,6 @@ body {
   left: 50%;
   transform: translateX(-50%);
   font-size: 20px;
-  font-family: 'Kalam', cursive;
 }
 
 .next-btn {
@@ -216,7 +215,6 @@ body {
   width: 65%;
   max-height: 60%;
   font-size: 20px;
-  font-family: 'Kalam', cursive;
   color: #333;
   line-height: 1.2;
   text-align: center;
