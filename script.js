@@ -7,7 +7,8 @@ const answers = {
   4: ["2"],
   5: ["2"],
   6: ["1"],
-  7: ["1"],
+  7: ["3"],
+  8: ["1"],
 };
 
 // // Show first note after intro animation
